@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="CRM-MICROSERVICES" type="CompoundRunConfigurationType">
+    <toRun name="AnalyticsAndReportingApplication" type="Application" />
+    <toRun name="ApiGatewayApplication" type="Application" />
+    <toRun name="CustomerDataManagementApplication" type="Application" />
+    <toRun name="CustomerSupportApplication" type="Application" />
+    <toRun name="MarketingAutomationApplication" type="Application" />
+    <toRun name="NotificationServiceApplication" type="Application" />
+    <toRun name="RegistryApplication" type="Application" />
+    <toRun name="SalesAutomationApplication" type="Application" />
+    <method v="2" />
+  </configuration>
+</component>

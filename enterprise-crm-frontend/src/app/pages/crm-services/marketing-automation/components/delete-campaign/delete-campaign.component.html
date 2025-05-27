@@ -1,0 +1,12 @@
+<div [hidden]="submitted">
+    <form (ngSubmit)="onSubmit()">
+        <div>
+            <label for="campaignID">Campaign Id:</label>
+            <input type="number" id="campaignID" required [(ngModel)]="campaign.campaignID" name="campaignID" />
+        </div>
+        <button type="submit">Delete</button>
+    </form>
+</div>
+<div [hidden]="!submitted">
+    <h4>{{ result }}</h4>
+</div>

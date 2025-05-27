@@ -1,0 +1,56 @@
+<div class="container card">
+    <div class="search-filter-container">
+        <app-search-customer [customers]="allCustomers" (searchChanged)="onCustomersSearchChanged($event)" (searchTermChange)="onSearchTermChanged($event)"></app-search-customer>
+        <app-filter-customer [customers]="allCustomers" (filteredCustomers)="handleFilteredCustomers($event)"></app-filter-customer>
+    </div>
+
+    <div *ngIf="loading" class="loading">Loading...</div>
+    <div *ngIf="error" class="error">Error: {{ error }}</div>
+
+    <div *ngIf="!loading && !error" class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Interest</th>
+                    <th>Region</th>
+                    <th>Purchasing Habits</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let c of customers">
+                    <td>{{ c.name }}</td>
+                    <td>{{ c.emailId }}</td>
+                    <td>{{ c.phoneNumber }}</td>
+                    <td>{{ c.segmentationData.Interest }}</td>
+                    <td>{{ c.segmentationData.Region }}</td>
+                    <td>{{ c.segmentationData['Purchasing Habits'] }}</td>
+                    <td class="actions-cell">
+                        <button class="action-button-update update-button" title="Update" (click)="updateBtn(c.customerID)">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="action-button-delete delete-button" (click)="openDeleteModal(c.customerID)" title="Delete">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="!loading && !error && !customers.length">No customers found.</div>
+
+    <div *ngIf="!loading && !error && totalItems > pageSize" class="pagination">
+        <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 0" class="page-button">Previous</button>
+        <span *ngFor="let page of pages">
+            <button (click)="changePage(page)" [ngClass]="{ active: currentPage === page }" class="page-button">
+                {{ page + 1 }}
+            </button>
+        </span>
+        <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages - 1" class="page-button">Next</button>
+    </div>
+</div>
+
+<app-delete-customer *ngIf="showDeleteModal" [selectedCustomerId]="selectedCustomerId" (close)="closeDeleteModal()" (deleteSuccessful)="handleDeleteSuccessful()"> </app-delete-customer>

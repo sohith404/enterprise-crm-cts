@@ -1,0 +1,68 @@
+<div class="container">
+    <h1 class="title">Register Customer</h1>
+
+    <div *ngIf="loading" class="loading">Loading...</div>
+    <div *ngIf="error" class="error">Error: {{ error }}</div>
+    <div *ngIf="success" class="success">Customer registered successfully!</div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" formControlName="name" class="form-control" />
+            <div *ngIf="registerForm.controls['name'].invalid && (registerForm.controls['name'].dirty || registerForm.controls['name'].touched)" class="alert alert-danger">
+                <div *ngIf="registerForm.controls['name'].errors?.['required']">Name is required.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="emailId">Email</label>
+            <input type="email" id="emailId" formControlName="emailId" class="form-control" />
+            <div *ngIf="registerForm.controls['emailId'].invalid && (registerForm.controls['emailId'].dirty || registerForm.controls['emailId'].touched)" class="alert alert-danger">
+                <div *ngIf="registerForm.controls['emailId'].errors?.['required']">Email is required.</div>
+                <div *ngIf="registerForm.controls['emailId'].errors?.['email']">Invalid email address.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="text" id="phoneNumber" formControlName="phoneNumber" class="form-control" />
+            <div *ngIf="registerForm.controls['phoneNumber'].invalid && (registerForm.controls['phoneNumber'].dirty || registerForm.controls['phoneNumber'].touched)" class="alert alert-danger">
+                <div *ngIf="registerForm.controls['phoneNumber'].errors?.['required']">Phone number is required.</div>
+                <div *ngIf="registerForm.controls['phoneNumber'].errors?.['pattern']">Phone number must be 10 digits.</div>
+            </div>
+        </div>
+
+        <div formGroupName="segmentationData" class="form-group">
+            <label for="Interest">Interest</label>
+            <select id="Interest" formControlName="Interest" class="form-control">
+                <option value="" disabled>Select Interest</option>
+                <option *ngFor="let interest of interestOptions" [value]="interest">
+                    {{ interest }}
+                </option>
+            </select>
+            <div *ngIf="registerForm.get('segmentationData.Interest')?.invalid && (registerForm.get('segmentationData.Interest')?.dirty || registerForm.get('segmentationData.Interest')?.touched)" class="alert alert-danger">
+                <div *ngIf="registerForm.get('segmentationData.Interest')?.errors?.['required']">Interest is required.</div>
+            </div>
+        </div>
+
+        <div formGroupName="segmentationData" class="form-group">
+            <label for="Region">Region</label>
+            <select id="Region" formControlName="Region" class="form-control">
+                <option value="" disabled>Select Region</option>
+                <option *ngFor="let region of regionOptions" [value]="region">
+                    {{ region }}
+                </option>
+            </select>
+            <div *ngIf="registerForm.get('segmentationData.Region')?.invalid && (registerForm.get('segmentationData.Region')?.dirty || registerForm.get('segmentationData.Region')?.touched)" class="alert alert-danger">
+                <div *ngIf="registerForm.get('segmentationData.Region')?.errors?.['required']">Region is required.</div>
+            </div>
+        </div>
+
+        <div formGroupName="segmentationData" class="form-group">
+            <label for="PurchasingHabits">Purchasing Habits</label>
+            <input type="text" id="PurchasingHabits" formControlName="Purchasing Habits" class="form-control" readonly />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</div>

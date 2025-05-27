@@ -1,0 +1,56 @@
+.customer-management-header {
+    margin-bottom: 20px;
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .description {
+    color: #666;
+    margin-bottom: 16px;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 10px;
+    align-items: center; /* Vertically align items */
+  }
+  
+  .search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+  }
+  
+  .filter-button,
+  .export-button {
+    padding: 8px 16px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .filter-button:hover,
+  .export-button:hover {
+    background-color: #e0e0e0;
+  }
+
+  .add-btn{
+    color: #ccc;
+    padding: 8px 16px;
+    background-color: #333;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .btn-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+  }
+
+  

@@ -1,0 +1,28 @@
+<div class="min-h-[21.5rem] w-full flex justify-between items-center py-4 gap-4">
+    <app-card class="h-full w-full rounded-xl transition-all border border-opacity-0 hover:shadow-lg hover:border-black/50 hover:border-opacity-100 cursor-pointer" title="Welcome Back" subTitle="Here's what's happening today">
+        <div class="flex flex-col py-4 justify-center items-center min-h-52">
+            <p-avatar [image]="user?.img" class="mr-2" size="xlarge" shape="circle" *ngIf="user?.img" />
+            <p-avatar [label]="user?.name?.charAt(0)?.toUpperCase()" styleClass="mr-2" size="xlarge" shape="circle" *ngIf="!user?.img" />
+            <span class="font-medium font-sans mt-4">{{ user?.name }}</span>
+            <p class="text-muted-foreground text-sm">{{ user?.role }}</p>
+        </div>
+    </app-card>
+    <app-card class="h-full w-full rounded-xl transition-all border border-opacity-0 hover:shadow-lg hover:border-black/50 hover:border-opacity-100 cursor-pointer" title="Recent Notifications" subTitle="Stay updated with the latest activities">
+        <div class="flex flex-col gap-2 py-4 justify-center items-center min-h-52 max-h-52">
+            <div class="w-full" *ngIf="!notificationList || notificationList.length > 0; else noNotifications">
+                <div class="w-full my-2 border-b py-1" *ngFor="let item of notificationList">
+                    <div class="w-full flex justify-between items-start">
+                        <div class="flex flex-col">
+                            <span class="text-sm font-bold font-sans">{{ item.heading }}</span>
+                            <span class="text-xs font-medium font-sans">{{ item.description }}</span>
+                        </div>
+                        <p class="text-xs text-muted-foreground w-fit font-sans">{{ item.time }}</p>
+                    </div>
+                </div>
+            </div>
+            <ng-template #noNotifications>
+                <p>No notifications yet.</p>
+            </ng-template>
+        </div>
+    </app-card>
+</div>

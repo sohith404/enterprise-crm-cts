@@ -1,0 +1,12 @@
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <a [routerLink]="module.href" *ngFor="let module of modules">
+        <div class="card bg-ui tls-shadow max-w-md min-h-40 transition-all border border-opacity-0 hover:shadow-lg hover:border-black/50 hover:border-opacity-100 cursor-pointer">
+            <div class="flex justify-between items-center w-full">
+                <i [class]="'pi pi-' + module.icon" style="font-size: 1.5rem"></i>
+                <p class="text-sm mt-3">{{ module.stats }}</p>
+            </div>
+            <h3 class="text-title text-lg font-bold">{{ module.title }}</h3>
+            <p class="text-sm mt-3">{{ module.description }}</p>
+        </div>
+    </a>
+</div>

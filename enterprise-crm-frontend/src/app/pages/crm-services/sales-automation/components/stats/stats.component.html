@@ -1,0 +1,16 @@
+<p-fluid class="grid h-fit items-center grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="card shadow-2 rounded-lg" *ngFor="let stat of statistics">
+        <div class="flex justify-between mb-3">
+            <div>
+                <span class="block text-gray-500 font-medium mb-3">{{ stat.title }}</span>
+                <div class="font-medium text-xl" *ngIf="stat.title != 'Total Revenue'">{{ stat.count }}</div>
+                <div class="font-medium text-xl" *ngIf="stat.title == 'Total Revenue'">{{ stat.count | currency: 'INR' }}</div>
+            </div>
+            <div [ngClass]="'flex items-center justify-center rounded-full ' + stat.iconBg" style="width: 2.5rem; height: 2.5rem">
+                <i [ngClass]="stat.iconClass + ' text-xl'"></i>
+            </div>
+        </div>
+        <span [ngClass]="stat.closingBg + ' font-medium'">{{ stat.footer }} </span>
+        <span class="text-gray-500">{{ stat.closingLine }}</span>
+    </div>
+</p-fluid>

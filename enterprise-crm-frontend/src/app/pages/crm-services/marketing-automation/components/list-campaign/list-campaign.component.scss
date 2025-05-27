@@ -1,0 +1,212 @@
+.list-campaign-container {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: small;
+  font-weight: 100;
+}
+
+.card {
+  margin-bottom: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+
+  &:hover {
+    cursor: pointer;
+    transform: translateY(5px) scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+  .card-body {
+    padding: 1.25rem;
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 0.75rem;
+      color: #333;
+    }
+
+    .card-text {
+      font-size: 0.875rem;
+      color: #555;
+      margin-bottom: 0.5rem;
+
+      strong {
+        font-weight: 600;
+        color: #000;
+      }
+    }
+
+    .btn {
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      background-color: #737373;
+      color: #fff;
+      border: none;
+      border-radius: 0.25rem;
+      text-decoration: none;
+
+      &:hover {
+        background-color: #0056b3;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  .col-md-4 {
+    flex: 1 1 calc(33.333% - 1rem);
+    max-width: calc(33.333% - 1rem);
+    border-radius: 10px;
+
+    .card {
+      position: relative;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+    gap: 1rem;
+
+    .col-md-4 {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+  }
+
+  .card {
+    .card-body {
+      padding: 1rem;
+
+      .card-title {
+        font-size: 1rem;
+      }
+
+      .card-text {
+        font-size: 0.75rem;
+      }
+
+      .btn {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.8rem;
+      }
+    }
+  }
+}
+
+/* Styling for the campaign type badge */
+.campaign-type-badge {
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+  margin-top: 10px;
+  margin-right: 10px;
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+
+  &.sms {
+    background-color:white; /* Green for SMS */
+    color: #333;
+  }
+
+  &.email {
+    background-color:white; /* Green for SMS */
+    color: #333;
+  }
+}
+
+/* Styling for the campaign status badge */
+.campaign-status-badge {
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  &.active {
+    background-color: rgb(207, 241, 155);
+    color: green; /* Green for Active */
+  }
+
+  &.inactive {
+    background-color: #ef6f7c; /* Red for Inactive */
+    color: #fff;
+  }
+  &.upcoming{
+    background-color:#444242;
+    color: #fff;
+  }
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.top-0 {
+  top: 0;
+}
+
+.start-0 {
+  left: 0;
+}
+
+.m-2 {
+  margin: 0.5rem;
+}
+
+.campaign-status-badge {
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
+  margin-top: 17px;
+  margin-left: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.paging {
+  display: flex;
+  justify-content: center; /* Center the buttons and page info */
+  align-items: center; /* Vertically align items */
+  margin-top: 1rem; /* Add some space above the pagination */
+  padding: 0.5rem; /* Add some padding around the controls */
+}
+
+.paging button {
+  padding: 0.5rem 1rem; /* Comfortable padding for buttons */
+  margin: 0 0.5rem; /* Space between buttons and page info */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 4px; /* Slightly rounded corners */
+  background-color: #f8f9fa; /* Light background */
+  color: #495057; /* Darker text color */
+  cursor: pointer; /* Indicate it's clickable */
+  font-size: 0.9rem; /* Slightly smaller font */
+}
+
+.paging button:hover {
+  background-color: #e9ecef; /* Slightly darker hover background */
+}
+
+.paging button:disabled {
+  background-color: #e9ecef; /* Keep the disabled background */
+  color: #6c757d; /* Light gray text for disabled */
+  border-color: #ccc; /* Keep the border */
+  cursor: not-allowed; /* Indicate it's not clickable */
+}
+
+.paging span {
+  font-size: 0.9rem; /* Match button font size */
+  color: #495057; /* Darker text color */
+  margin: 0 1rem; /* Space around the page info */
+}

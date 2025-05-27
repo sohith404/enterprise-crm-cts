@@ -1,0 +1,17 @@
+<div class="overflow-hidden">
+    <div class="w-full h-[79vh] shadow-lg flex card">
+        <!-- Left Section: Profile Picture -->
+        <div class="w-1/3 flex flex-col items-center justify-center">
+            <p-avatar [label]="user.name.charAt(0).toUpperCase()" size="xlarge" *ngIf="!user.img" class="scale-[200%]" />
+            <p-avatar [image]="user.img" size="xlarge" class="scale-[200%]" *ngIf="user.img" />
+        </div>
+
+        <!-- Right Section: Employee Details -->
+        <div class="w-2/3 flex flex-col justify-center">
+            <h2 class="text-xl font-bold">{{ user.name }}</h2>
+            <p class="text-sm">ID: {{ user.id }}</p>
+            <p class="text-sm">Role: {{ user.role }}</p>
+            <p class="text-sm truncate">Email: {{ user.email }}</p>
+        </div>
+    </div>
+</div>

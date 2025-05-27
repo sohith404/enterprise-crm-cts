@@ -1,0 +1,26 @@
+
+button {
+  padding: 10px 20px;
+  border: none;
+  margin-right: 19px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #fff;
+  float: right;
+  background-color:rgb(73, 65, 65);
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0056b3;
+    color: #fff;
+  }
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+}
+app-list-campaign {
+  display: block;
+}

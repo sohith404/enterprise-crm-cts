@@ -1,0 +1,9 @@
+<div class="flex flex-col gap-4">
+    <app-header></app-header>
+    <app-analytics-stats [allSales$]="salesList$" [allCustomers$]="customerList$" [allSupports$]="customerSupportList$"></app-analytics-stats>
+    <app-monthly-sales-trend [allSales$]="salesList$"></app-monthly-sales-trend>
+    <app-customermodule></app-customermodule>
+    <app-supportmodule></app-supportmodule>
+    <app-marketingmodule></app-marketingmodule>
+    <app-tabs [tabs]="tabs"></app-tabs>
+</div>

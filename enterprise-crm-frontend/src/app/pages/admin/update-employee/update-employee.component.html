@@ -1,0 +1,69 @@
+<div class="bg-surface-50 dark:bg-surface-950 flex items-center justify-center min-h-screen overflow-hidden">
+    <div class="flex flex-col items-center justify-center">
+        <div style="border-radius: 56px; padding: 0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%)" *ngIf="!userRegistered; else successMessage">
+            <div class="w-full bg-surface-0 dark:bg-surface-900 py-20 px-8 sm:px-20 max-w-5xl" style="border-radius: 53px">
+                <div class="text-center mb-8">
+                    <div class="text-surface-900 dark:text-surface-0 text-3xl font-medium mb-4">{{ !loading ? name : 'Registering' }}</div>
+                    <span class="text-muted-color font-medium">{{ !loading ? 'Change password' : 'in progress..' }}</span>
+                </div>
+
+                <form class="flex flex-col justify-center items-center gap-4 w-full" *ngIf="!loading; else spinner">
+                    <div class="flex gap-2 mx-auto w-full items-center">
+                        <label for="email" class="text-xl font-serif text-surface-900 dark:text-surface-0">Email:</label>
+                        <div class="flex flex-col gap-2 w-full">
+                            <input disabled="true" id="email" type="text" pInputText pSize="large" class="w-full" name="email" [(ngModel)]="email" required />
+                        </div>
+                    </div>
+                    <div class="flex gap-2 mx-auto w-full items-center">
+                        <label for="name" class="text-xl font-serif text-surface-900 dark:text-surface-0">Name:</label>
+                        <div class="flex flex-col w-full gap-2">
+                            <input disabled="true" id="name" type="text" pInputText pSize="large" class="w-full" name="name" [(ngModel)]="name" required />
+                        </div>
+                    </div>
+                    <div class="flex gap-2 mx-auto w-full items-center" [formGroup]="form" #employeeForm="ngForm" (ngSubmit)="onSubmit()">
+                        <div class="flex gap-2 mx-auto w-full items-center">
+                            <label for="password" class="text-xl font-serif text-surface-900 dark:text-surface-0">Password:</label>
+                            <div class="flex flex-col gap-2">
+                                <p-password id="password" formControlName="password" placeholder="Password" [toggleMask]="true" [fluid]="true" [feedback]="false"></p-password>
+                                <small class="text-red-600" id="password" class="text-red-600" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">{{ passwordErrorMessage }}</small>
+                            </div>
+                        </div>
+                        <div class="flex gap-2 mx-auto w-full items-center">
+                            <label for="confirmPassword" class="text-xl font-serif text-surface-900 dark:text-surface-0">Confirm Password:</label>
+                            <div class="flex flex-col gap-2">
+                                <p-password id="confirmPassword" formControlName="confirmPassword" placeholder="Confirm Password" [toggleMask]="true" [fluid]="true" [feedback]="false"></p-password>
+                                <small class="text-red-600" id="confirmPassword" class="text-red-600" *ngIf="form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched">{{ confirmPasswordErrorMessage }}</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 mx-auto items-center">
+                        <label for="role" class="text-xl font-serif text-surface-900 dark:text-surface-0">Select Role:</label>
+                        <div class="flex flex-col gap-2">
+                            <p-selectbutton disabled="true" [options]="options" optionLabel="label" optionValue="value" size="large" name="role" [(ngModel)]="role"></p-selectbutton>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 mx-auto w-full items-center">
+                        <label for="img" class="text-xl font-serif text-surface-900 dark:text-surface-0">Image:</label>
+                        <div class="flex flex-col gap-2 w-full">
+                            <input disabled="true" id="img" type="text" pInputText pSize="large" class="w-full" name="img" [(ngModel)]="img" />
+                        </div>
+                    </div>
+                    <div class="flex gap-2 mx-auto my-6 items-center">
+                        <p-button size="large" label="Submit" [raised]="true" severity="success" [disabled]="employeeForm.invalid" icon="pi pi-check" (click)="onSubmit()" type="submit"></p-button>
+                        <p-button size="large" label="Cancel" (click)="onCancel()" [raised]="true" severity="danger" icon="pi pi-times" *ngIf="!loading"></p-button>
+                    </div>
+                </form>
+                <ng-template #spinner>
+                    <div class="mx-auto w-fit">
+                        <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+    <ng-template #successMessage>
+        <div class="mx-auto w-fit">
+            <div class="text-green-500 text-3xl font-medium mb-4">Password Changed Successfully</div>
+        </div>
+    </ng-template>
+</div>

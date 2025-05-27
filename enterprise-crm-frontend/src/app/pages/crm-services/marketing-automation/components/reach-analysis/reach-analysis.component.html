@@ -1,0 +1,48 @@
+<div class="container mt-4">
+    <h2>Campaign Reach Analysis by Type</h2>
+
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+    <div *ngIf="campaignReachByType">
+        <div class="reach-bar-graph-container">
+            <div class="reach-bar sms" *ngIf="campaignReachByType['SMS']" [style.height.%]="campaignReachByType['SMS'] && maxAverageInteraction ? (campaignReachByType['SMS'].averageInteractions / maxAverageInteraction) * 100 : 0">
+                <div class="reach-bar-header">SMS</div>
+                <span class="reach-bar-value">{{ campaignReachByType['SMS'].averageInteractions | number: '1.2-2' }}</span>
+                <span class="reach-bar-label">Average Interactions</span>
+            </div>
+
+            <div class="reach-bar email" *ngIf="campaignReachByType['EMAIL']" [style.height.%]="campaignReachByType['EMAIL'] && maxAverageInteraction ? (campaignReachByType['EMAIL'].averageInteractions / maxAverageInteraction) * 100 : 0">
+                <div class="reach-bar-header">Email</div>
+                <span class="reach-bar-value">{{ campaignReachByType['EMAIL'].averageInteractions | number: '1.2-2' }}</span>
+                <span class="reach-bar-label">Average Interactions</span>
+            </div>
+        </div>
+
+        <div *ngFor="let type of getCampaignTypes()" class="card mb-3">
+            <div class="card-header to-black">Campaign Type: {{ type }}</div>
+            <div class="card-body">
+                <p><strong>Average Interactions:</strong> {{ campaignReachByType[type].averageInteractions | number: '1.2-2' }}</p>
+
+                <div *ngIf="campaignReachByType[type]?.highestReachCampaignName">
+                    <p><strong>Highest Reach Campaign:</strong> {{ campaignReachByType[type].highestReachCampaignName }}</p>
+                    <p><strong>Highest Reach Interactions:</strong> {{ campaignReachByType[type].highestReachInteractions }}</p>
+                </div>
+                <div *ngIf="!campaignReachByType[type]?.highestReachCampaignName">
+                    <p><strong>Highest Reach Campaign:</strong> N/A</p>
+                </div>
+
+                <div *ngIf="campaignReachByType[type]?.lowestReachCampaignName">
+                    <p><strong>Lowest Reach Campaign:</strong> {{ campaignReachByType[type].lowestReachCampaignName }}</p>
+                    <p><strong>Lowest Reach Interactions:</strong> {{ campaignReachByType[type].lowestReachInteractions }}</p>
+                </div>
+                <div *ngIf="!campaignReachByType[type]?.lowestReachCampaignName">
+                    <p><strong>Lowest Reach Campaign:</strong> N/A</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="!campaignReachByType && !errorMessage">
+        <p>Loading campaign reach analysis...</p>
+    </div>
+</div>

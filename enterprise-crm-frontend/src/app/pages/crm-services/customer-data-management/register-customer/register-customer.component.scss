@@ -1,0 +1,97 @@
+.container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: left;
+  }
+  
+  .loading {
+    text-align: center;
+    margin-top: 20px;
+    font-style: italic;
+    color: #666;
+  }
+  
+  .error {
+    color: red;
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid red;
+    background-color: #ffe0e0;
+    border-radius: 8px;
+    text-align: center;
+  }
+  .success{
+    color: green;
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid green;
+    background-color: #e0ffe0;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .form {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: #4caf50;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .alert-danger{
+    color: red;
+    margin-top: 5px;
+    font-size: 14px;
+  }
+  
+  .btn-primary {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #45a049;
+  }
+  
+  .btn-primary:active {
+    background-color: #388e3c;
+  }
+

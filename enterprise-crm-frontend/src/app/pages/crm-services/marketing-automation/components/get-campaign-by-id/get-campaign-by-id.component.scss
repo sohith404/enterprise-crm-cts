@@ -1,0 +1,123 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+
+  .col-md-6 {
+    flex: 1 1 45%;
+    margin-bottom: 20px;
+
+    form {
+      .mb-3 {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+
+        label {
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+
+        input {
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          margin-bottom: 10px;
+        }
+
+        button[type="submit"] {
+          padding: 10px 15px;
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #0056b3;
+          }
+        }
+      }
+
+      .update {
+        display: flex;
+        gap: 10px;
+
+        .btn {
+          padding: 10px 15px;
+          background-color: #28a745;
+          color: #fff;
+          border: none;
+          border-radius: 4px;
+          text-decoration: none;
+          text-align: center;
+
+          &:hover {
+            background-color: #218838;
+          }
+        }
+      }
+    }
+  }
+
+  .col-md-5 {
+    flex: 1 1 45%;
+    margin-bottom: 20px;
+
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      overflow: hidden;
+
+      .card-header {
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+
+        .card-title {
+          margin: 0;
+          font-size: 18px;
+          font-weight: bold;
+        }
+      }
+
+      .card-body {
+        padding: 15px;
+
+        p {
+          margin: 10px 0;
+          font-size: 14px;
+
+          strong {
+            font-weight: bold;
+          }
+        }
+
+        .btn {
+          display: inline-block;
+          padding: 10px 15px;
+          background-color: #17a2b8;
+          color: #fff;
+          border: none;
+          border-radius: 4px;
+          text-decoration: none;
+          text-align: center;
+
+          &:hover {
+            background-color: #117a8b;
+          }
+        }
+      }
+    }
+
+    .alert {
+      padding: 15px;
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+      border-radius: 4px;
+      text-align: center;
+    }
+  }
+}

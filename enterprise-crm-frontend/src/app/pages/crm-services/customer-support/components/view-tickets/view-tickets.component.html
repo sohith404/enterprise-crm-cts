@@ -1,0 +1,53 @@
+<div class="ticket-search-container">
+    <input type="text" placeholder="Search Ticket" class="ticket-search-input" [(ngModel)]="searchedText" (input)="handleSearchInput($event)" />
+</div>
+<div class="ticket-filter-container">
+    <button class="filter-button" (click)="toggleStatusFilter()">Filter by Status <i class="fas fa-filter"></i></button>
+    <div *ngIf="showStatusFilterOptions" class="status-filter-options">
+        <button (click)="filterByStatus('')" [class.active]="selectedStatus === ''">All</button>
+        <button (click)="filterByStatus('Open')" [class.active]="selectedStatus === 'Open'">Open</button>
+        <button (click)="filterByStatus('Closed')" [class.active]="selectedStatus === 'Closed'">Closed</button>
+    </div>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>Ticket ID</th>
+            <th>Customer ID</th>
+            <th>Issue Description</th>
+            <th>Assigned Agent</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="pagedCustomers.length > 0">
+        <tr *ngFor="let ticket of pagedCustomers">
+            <td>{{ ticket.ticketID }}</td>
+            <td>{{ ticket.customerID }}</td>
+            <td>{{ ticket.issueDescription }}</td>
+            <td>{{ ticket.assignedAgent }}</td>
+            <td>{{ ticket.status }}</td>
+            <td class="actions-cell">
+                <button class="action-button update-button" title="Update" [routerLink]="'/pages/services/customer-support/update-ticket/' + ticket.ticketID">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="action-button delete-button" title="Delete" (click)="confirmDelete($event, ticket.ticketID!)">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+    <tbody *ngIf="pagedCustomers.length == 0">
+        <tr>
+            <td>
+                <p>No tickets found.</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p-confirmdialog />
+<div class="pagination">
+    <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+    <button *ngFor="let page of getPages()" (click)="changePage(page)" [class.active]="page === currentPage">{{ page }}</button>
+    <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+</div>

@@ -1,0 +1,46 @@
+<div class="filter-container">
+    <button class="filter-button" (click)="toggleFilter()">
+        Filter
+        <span [ngClass]="{ arrow: true, open: isFilterOpen }"></span>
+    </button>
+
+    <div *ngIf="isFilterOpen" class="dropdown">
+        <div class="dropdown-content">
+            <div class="filter-options">
+                <button (click)="openSection('interest')" [ngClass]="{ active: activeSection === 'interest' }" class="filter-option-button">INTEREST</button>
+                <button (click)="openSection('region')" [ngClass]="{ active: activeSection === 'region' }" class="filter-option-button">REGION</button>
+                <button (click)="openSection('purchasingHabits')" [ngClass]="{ active: activeSection === 'purchasingHabits' }" class="filter-option-button">PURCHASING HABITS</button>
+            </div>
+
+            <div *ngIf="activeSection === 'interest'" class="sub-dropdown">
+                <div *ngFor="let option of interestOptions" (click)="selectFilterValue('interest', option)" class="sub-dropdown-option">
+                    {{ option }}
+                </div>
+            </div>
+            <div *ngIf="activeSection === 'region'" class="sub-dropdown">
+                <div *ngFor="let option of regionOptions" (click)="selectFilterValue('region', option)" class="sub-dropdown-option">
+                    {{ option }}
+                </div>
+            </div>
+            <div *ngIf="activeSection === 'purchasingHabits'" class="sub-dropdown">
+                <div *ngFor="let option of purchasingHabitsOptions" (click)="selectFilterValue('purchasingHabits', option)" class="sub-dropdown-option">
+                    {{ option }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="selectedFilter.interest || selectedFilter.region || selectedFilter.purchasingHabits" class="selected-filters">
+        <span *ngIf="selectedFilter.interest">
+            Interest: {{ selectedFilter.interest }}
+            <button (click)="clearFilter('interest')" class="clear-filter-button">x</button>
+        </span>
+        <span *ngIf="selectedFilter.region">
+            Region: {{ selectedFilter.region }}
+            <button (click)="clearFilter('region')" class="clear-filter-button">x</button>
+        </span>
+        <span *ngIf="selectedFilter.purchasingHabits">
+            Purchasing Habits: {{ selectedFilter.purchasingHabits }}
+            <button (click)="clearFilter('purchasingHabits')" class="clear-filter-button">x</button>
+        </span>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="flex justify-between items-center card">
+    <span class="text-2xl font-sans font-bold">Analytics on Customer Data Mangement</span>
+    <p-button icon="pi pi-refresh" aria-label="Save" (click)="loadReport()" />
+</div>
+<div class="card flex justify-center">
+    <p-chart type="pie" [data]="data" [options]="options" class="w-full md:w-[30rem] chart" />
+</div>
+<div class="card">
+    <h4>Top 5 Customers</h4>
+    <p-table [value]="(reportRes$ | async)!.dataPoints.top5Customers" stripedRows [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template #header>
+            <tr>
+                <th>Customer ID</th>
+                <th>Name</th>
+                <th>Purchase Count</th>
+            </tr>
+        </ng-template>
+        <ng-template #body let-customer>
+            <tr>
+                <td>{{ customer.customerId }}</td>
+                <td>{{ customer.name }}</td>
+                <td>{{ customer.purchaseCount }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

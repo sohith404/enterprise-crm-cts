@@ -1,0 +1,19 @@
+<div class="modal-overlay">
+    <div class="modal-content">
+        <h3>Confirm Delete</h3>
+        <p>Are you sure you want to delete the customer?</p>
+
+        <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+        </div>
+
+        <div *ngIf="successMessage" class="success-message">
+            {{ successMessage }}
+        </div>
+
+        <div class="modal-actions">
+            <button class="confirm-button" (click)="confirmDelete()">Yes, Delete</button>
+            <button class="cancel-button" (click)="onClose()">Cancel</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="space-y-6 container">
+    <div class="flex justify-between items-center">
+        <h1 class="text-3xl font-bold tracking-tight">Dashboard</h1>
+        <div class="flex items-center space-x-4">
+            <div class="flex items-center gap-2">
+                <!-- calender -->
+                <i class="pi pi-calendar" style="font-size: 1.5rem"></i>
+                <!-- date -->
+                <app-date></app-date>
+            </div>
+            <div class="flex items-center gap-2">
+                <!-- clock -->
+                <i class="pi pi-clock" style="font-size: 1.5rem"></i>
+                <!-- time -->
+                <app-time></app-time>
+            </div>
+        </div>
+    </div>
+    <app-tabs [tabs]="tabs"></app-tabs>
+</div>

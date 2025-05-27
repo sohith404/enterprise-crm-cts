@@ -1,0 +1,49 @@
+<div>
+    <h2>Create New Campaign</h2>
+
+    <div *ngIf="successMessageVisible" class="success-banner">Campaign is successfully saved!</div>
+
+    <form [formGroup]="formData">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" formControlName="name" />
+            <div *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+                <div *ngIf="name?.errors?.['required']">Name is required.</div>
+                <div *ngIf="name?.errors?.['minlength']">Name must be at least 5 characters long.</div>
+                <div *ngIf="name?.errors?.['pattern']">Name cannot be numerical.</div>
+            </div>
+        </div>
+        <div>
+            <label for="startDate">Start Date:</label>
+            <input type="date" id="startDate" formControlName="startDate" />
+            <div *ngIf="startDate?.invalid && (startDate?.dirty || startDate?.touched)">
+                <div *ngIf="startDate?.errors?.['required']">Start Date is required.</div>
+                <div *ngIf="startDate?.errors?.['futureDateValidator']">Start Date must be in the present or future.</div>
+            </div>
+        </div>
+        <div>
+            <label for="endDate">End Date:</label>
+            <input type="date" id="endDate" formControlName="endDate" />
+            <div *ngIf="endDate?.invalid && (endDate?.dirty || endDate?.touched)">
+                <div *ngIf="endDate?.errors?.['required']">End Date is required.</div>
+                <div *ngIf="endDate?.errors?.['futureDateValidator']">End Date must be in the present or future.</div>
+            </div>
+        </div>
+        <div>
+            <label for="type">Type:</label>
+            <select id="type" formControlName="type">
+                <option value="" disabled>Select Type</option>
+                <option value="EMAIL">Email</option>
+            </select>
+            <div *ngIf="type?.invalid && (type?.dirty || type?.touched)">
+                <div *ngIf="type?.errors?.['required']">Type is required.</div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="flex justify-center items-center m-4">
+    <div class="flex gap-2">
+        <p-button class="save-btn" (click)="onSubmit()" type="submit" label="Submit" [disabled]="formData.invalid" [loading]="loading" />
+        <p-button (click)="cancelForm()" class="cancel-btn" label="Cancel"></p-button>
+    </div>
+</div>

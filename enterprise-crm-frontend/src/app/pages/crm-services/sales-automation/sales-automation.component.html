@@ -1,0 +1,6 @@
+<section id="sales-automation" class="flex flex-col gap-4">
+    <app-heading [title]="title" [allSales$]="salesList$"></app-heading>
+    <app-stats [allSales$]="salesList$"></app-stats>
+    <app-monthly-sales-trend [allSales$]="salesList$"></app-monthly-sales-trend>
+    <app-sales-pipeline [allSales$]="salesList$"></app-sales-pipeline>
+</section>

@@ -1,0 +1,95 @@
+<div class="card">
+    <div class="flex flex-column justify-between lg:flex-row">
+        <div>
+            <div class="font-medium text-3xl text-900">{{ title }}</div>
+            <div class="flex align-items-center text-700 flex-wrap">
+                <div class="mr-5 flex align-items-center mt-3">
+                    <i class="pi pi-users mr-2"></i>
+                    <span>{{ activeLeads }} Active Leads</span>
+                </div>
+                <div class="mr-5 flex align-items-center mt-3">
+                    <i class="pi pi-indian-rupee mr-1"></i>
+                    <span>{{ estimatedRevenue | number: '4.2' }} Estimated Revenue</span>
+                </div>
+                <div class="flex align-items-center mt-3">
+                    <i class="pi pi-trophy mr-2"></i>
+                    <span>{{ leadsWon }} Leads Won</span>
+                </div>
+            </div>
+        </div>
+        <div class="mt-3 lg:mt-0 flex gap-2">
+            <div style="position: relative">
+                <p-speeddial [model]="items" direction="left" [style]="{ position: 'absolute', top: 'calc(50% - 2rem)', right: 0 }" [tooltipOptions]="{ tooltipPosition: 'top' }" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-dialog header="Set Schedule" [modal]="true" [(visible)]="visible1" [style]="{ width: '25rem', height: '20rem' }">
+    <form [formGroup]="closingCronForm" #registerForm="ngForm" (ngSubmit)="handleClosingSumbit()">
+        <span class="p-text-secondary block mb-8"> Update schedule for automatic closing. </span>
+        <div class="flex items-center gap-4 mb-12">
+            <label for="automatic-closing" class="font-semibold w-24">Set Time</label>
+            <p-datepicker class="flex-auto" inputId="automatic-closing" [timeOnly]="true" formControlName="time" />
+        </div>
+        <div class="flex justify-end gap-2">
+            <p-button label="Cancel" severity="secondary" (click)="visible1 = false" (onKeyPress)="visible1 = false" />
+            <p-button label="Save" type="submit" [disabled]="!closingCronForm.valid" [loading]="isLoading" />
+        </div>
+    </form>
+</p-dialog>
+
+<p-dialog header="Set Schedule" [modal]="true" [(visible)]="visible2" [style]="{ width: '25rem', height: '20rem' }">
+    <form [formGroup]="notificationCronForm" #registerForm="ngForm" (ngSubmit)="handleNotificationSumbit()">
+        <span class="p-text-secondary block mb-8"> Update schedule for notifications. </span>
+        <div class="flex items-center gap-4 mb-12">
+            <label for="automatic-notification" class="font-semibold w-24">Set Time</label>
+            <p-datepicker class="flex-auto" inputId="automatic-notification" [timeOnly]="true" formControlName="time" />
+        </div>
+        <div class="flex justify-end gap-2">
+            <p-button label="Cancel" severity="secondary" (click)="visible2 = false" (onKeyPress)="visible2 = false" />
+            <p-button label="Save" type="submit" [disabled]="!notificationCronForm.valid" [loading]="isLoading" />
+        </div>
+    </form>
+</p-dialog>
+
+<p-dialog header="Create New Lead" [modal]="true" [maximizable]="true" [(visible)]="visible3" [style]="{ width: '35rem', height: '25rem' }">
+    <form [formGroup]="newLeadForm" #registerForm="ngForm" (ngSubmit)="handleLeadSubmit()">
+        <span class="p-text-secondary block mb-8"> Register a new Sales Opportunity </span>
+        <div class="flex items-center gap-4 mb-4">
+            <label for="customerID" class="font-semibold w-24">Customer ID</label>
+            <p-fluid class="flex flex-col">
+                <input pInputText id="customerID" class="flex-auto" autocomplete="off" formControlName="customerId" />
+                <div *ngIf="newLeadForm.get('customerId')?.invalid && (newLeadForm.get('customerId')?.dirty || newLeadForm.get('customerId')?.touched)">
+                    <small class="text-red-500">{{ customerIdErrorMessage }}</small>
+                </div>
+            </p-fluid>
+        </div>
+        <div class="flex items-center gap-4 mb-4">
+            <label for="Estimated Value" class="font-semibold w-24">Estimated Value</label>
+            <p-fluid class="flex flex-col">
+                <p-inputnumber mode="currency" class="flex-auto" placeholder="INR 0.00" inputId="currency-india" currency="INR" currencyDisplay="code" locale="en-IN" formControlName="estimatedValue" />
+                <div *ngIf="newLeadForm.get('estimatedValue')?.invalid && (newLeadForm.get('estimatedValue')?.dirty || newLeadForm.get('estimatedValue')?.touched)">
+                    <small class="text-red-500">{{ estimatedValueErrorMessage }}</small>
+                </div>
+            </p-fluid>
+        </div>
+        <div class="flex items-center gap-4 mb-4">
+            <label for="Estimated Value" class="font-semibold w-24">Sales Stage</label>
+            <p-select formControlName="salesStage" readonly [options]="salesStage" optionLabel="name" placeholder="PROSPECTING" class="flex-auto" />
+        </div>
+        <div class="flex items-center gap-4 mb-4">
+            <label for="Estimated Value" class="font-semibold w-24">Closing Date</label>
+            <p-fluid class="flex flex-col">
+                <p-datepicker [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" formControlName="closingDate" />
+                <div *ngIf="newLeadForm.get('closingDate')?.invalid && (newLeadForm.get('closingDate')?.dirty || newLeadForm.get('closingDate')?.touched)">
+                    <small class="text-red-500">{{ closingDateErrorMessage }}</small>
+                </div>
+            </p-fluid>
+        </div>
+        <div class="flex justify-end gap-2">
+            <p-button label="Cancel" severity="secondary" (click)="visible3 = false" (onKeyDown)="visible3 = false" />
+            <p-button label="Save" [disabled]="!newLeadForm.valid" type="submit" [loading]="isLoading" />
+        </div>
+    </form>
+</p-dialog>

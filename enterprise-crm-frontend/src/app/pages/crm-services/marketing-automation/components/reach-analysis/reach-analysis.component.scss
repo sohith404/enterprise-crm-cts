@@ -1,0 +1,74 @@
+  /* Base styles for the bar graph container */
+  .reach-bar-graph-container {
+    display: flex;
+    gap: 2rem; /* Increased space between bars */
+    align-items: flex-end; /* Align bars to the bottom */
+    margin-top: 2rem; /* Increased top margin */
+    padding: 1rem; /* Add some padding around the graph */
+    background-color: #f8f9fa; /* Light background for the graph container */
+    border-radius: 8px; /* Rounded corners for the container */
+    border: 1px solid #e0e0e0; /* Light border for the container */
+  }
+
+  /* Base styles for individual bars */
+  .reach-bar {
+    background-color: #ccc; /* Default background */
+    color: white;
+    text-align: center;
+    border-radius: 6px 6px 0 0; /* More rounded top corners */
+    flex-grow: 1; /* Distribute available space equally */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Push content to the bottom */
+    padding-bottom: 0.5rem; /* Space for the value */
+    position: relative; /* For positioning the header */
+  }
+
+  .reach-bar-header {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black header */
+    color: white;
+    padding: 0.5rem;
+    border-radius: 6px 6px 0 0;
+    font-size: 0.9rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .reach-bar-value {
+    font-size: 1rem;
+    color: #333; /* Darker value text */
+    margin-top: 0.5rem; /* Space between bar top and value */
+  }
+
+  .reach-bar-label {
+    font-size: 0.85rem;
+    color: #555;
+    margin-top: 0.3rem;
+    text-align: center;
+  }
+
+  /* Styles for SMS Campaign Bar */
+  .reach-bar.sms {
+    background-color: #17a2b8; /* Info blue for SMS */
+  }
+
+  .reach-bar.sms .reach-bar-header {
+    background-color: rgba(23, 162, 184, 0.8); /* Slightly darker info blue */
+  }
+
+  /* Styles for Email Campaign Bar */
+  .reach-bar.email {
+    background-color: #28a745; /* Success green for Email */
+  }
+
+  .reach-bar.email .reach-bar-header {
+    background-color: rgba(40, 167, 69, 0.8); /* Slightly darker success green */
+  }
+
+  .card-header.to-black {
+    background-color: #343a40; /* Dark background for card header */
+    color: white;
+  }
+

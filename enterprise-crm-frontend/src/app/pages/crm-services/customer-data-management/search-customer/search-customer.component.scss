@@ -1,0 +1,27 @@
+.customer-search-container {
+    margin-bottom: 20px; /* Add some space below the search input */
+}
+
+.customer-search-input {
+    width: 100%; /* Make the input take up the full width of its container */
+    padding: 10px;
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 5px; /* Add rounded corners */
+    font-size: 16px; /* Increase font size for better readability */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    transition: border-color 0.3s ease; /* Smooth transition for focus effect */
+}
+
+.customer-search-input:focus {
+    outline: none; /* Remove the default outline */
+    border-color: #007bff; /* Change border color on focus (e.g., to Bootstrap's primary color) */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1); /* Add a subtle shadow on focus */
+}
+
+/* Responsive adjustments (optional - adjust as needed) */
+@media (max-width: 768px) {
+    .customer-search-input {
+        font-size: 14px; /* Smaller font on small screens */
+        padding: 8px;
+    }
+}

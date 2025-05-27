@@ -1,0 +1,20 @@
+<div class="flex flex-col gap-4">
+    <div class="flex gap-2 w-fit p-1 bg-muted rounded-md">
+        <button
+            *ngFor="let tab of tabs; index as i"
+            (click)="setActive(i)"
+            [ngClass]="{
+                'bg-white text-primary-950': activeIndex === i,
+                'hover:bg-surface-50 dark:hover:bg-surface-700': activeIndex !== i
+            }"
+            class="px-4 py-2 rounded-md font-semibold transition-all text-sm"
+        >
+            {{ tab.label }}
+        </button>
+    </div>
+    <div class="">
+        <ng-container *ngIf="tabs[activeIndex]">
+            <ng-container *ngComponentOutlet="tabs[activeIndex].content"></ng-container>
+        </ng-container>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+<p-fluid>
+    <div class="card">
+        <div class="font-bold text-xl">Sales Pipeline</div>
+        <div class="font-semibold text-muted-color text-sm mb-4">Drag and drop leads to change sales-stage</div>
+        <input type="text" placeholder="Search Leads..." class="p-inputtext w-full" [(ngModel)]="searchQuery" (input)="onSearchChange()" />
+        <div class="flex my-4 items-center justify-between">
+            <div class="flex gap-2">
+                <p-button pTooltip="Press 'Save Changes' to save changes." label="Changes" [badge]="modifiedLeads.length.toString()" label="Changes" icon="pi pi-file-edit" />
+                <p-button pTooltip="Discard Changes" icon="pi pi-trash" severity="danger" (click)="discardChanges()" [disabled]="modifiedLeads.length == 0" />
+            </div>
+
+            <p-button pTooltip="Save Changes" tooltipPosition="left" label="Save Changes" icon="pi pi-save" (click)="onSave()" [disabled]="modifiedLeads.length == 0" [loading]="loading" />
+        </div>
+        <div class="grid grid-cols-4">
+            <div
+                class="flex flex-col gap-4 items-center"
+                *ngFor="let stage of salesStageKeys"
+                cdkDropList
+                [cdkDropListData]="pagedSalesPipeline[stage]"
+                [cdkDropListConnectedTo]="salesStageKeys"
+                (cdkDropListDropped)="onDrop($event, stage)"
+                [id]="stage"
+            >
+                <div [ngClass]="bgClasses[stage] + 'border px-4 py-2 w-[98%]  flex justify-between items-center rounded-md shadow-md backdrop-blur-md'">
+                    <p class="m-0 font-bold text-sm md: text-base">{{ stage | titlecase }}</p>
+                    <p>{{ (searchQuery ? filteredSalesPipeline[stage].length : salesPipeline[stage].length) || 0 }}</p>
+                </div>
+                <div [ngClass]="'mx-auto w-[99%]'" *ngFor="let lead of pagedSalesPipeline[stage]" cdkDrag>
+                    <p-panel [toggleable]="true" [collapsed]="true">
+                        <ng-template #header>
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold">{{ leadTitle(lead) }}</span>
+                            </div>
+                        </ng-template>
+                        <ng-template #footer>
+                            <span class="text-yellow-500 dark:text-yellow-400 mb-2 text-sm" *ngIf="lead.followUpReminder">Reminder is set for {{ lead.followUpReminder }}</span>
+                            <p-button icon="pi pi-clock" severity="secondary" rounded text label="Set Reminder" *ngIf="!lead.followUpReminder" (click)="showDialog(lead)"></p-button>
+                        </ng-template>
+                        <div class="m-0">
+                            <p class="text-xs">Customer ID: {{ lead.customerID }}</p>
+                            <p>{{ lead.estimatedValue | currency: 'INR' }}</p>
+                            <div class="flex items-center gap-2">
+                                <i class="pi pi-calendar"></i>
+                                <p class="text-sm">{{ lead.closingDate }}</p>
+                            </div>
+                        </div>
+                    </p-panel>
+                </div>
+                <p-paginator
+                    (onPageChange)="onPageChange($event, stage)"
+                    [first]="first[stage]"
+                    [rows]="rows"
+                    [totalRecords]="searchQuery ? filteredSalesPipeline[stage].length || 0 : salesPipeline[stage].length || 0"
+                    [showFirstLastIcon]="false"
+                    [showCurrentPageReport]="true"
+                    [showPageLinks]="false"
+                    [showJumpToPageDropdown]="false"
+                    currentPageReportTemplate="Showing {currentPage} of {totalPages}"
+                ></p-paginator>
+            </div>
+        </div>
+    </div>
+    <p-dialog header="Set a follow-up reminder." [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+        <form [formGroup]="formGroup" #registerForm="ngForm" (ngSubmit)="onSubmit()">
+            <span class="p-text-secondary block mb-8">Select the date you want.</span>
+            <div class="mb-4">
+                <p-floatlabel variant="on">
+                    <p-datepicker [inline]="true" inputId="on_label" showIcon iconDisplay="input" formControlName="date" />
+                </p-floatlabel>
+                <div *ngIf="formGroup.get('date')?.invalid && (formGroup.get('date')?.dirty || formGroup.get('date')?.touched)" class="p-error">
+                    <small class="text-red-500" *ngIf="formGroup.get('date')?.errors?.['required']">Date is required.</small>
+                    <small class="text-red-500" *ngIf="formGroup.get('date')?.errors?.['futureDate']">Date must be in the future.</small>
+                    <small class="text-red-500" *ngIf="formGroup.get('date')?.errors?.['beforeClosingDate']">Date must be before closing date.</small>
+                </div>
+            </div>
+            <div class="flex justify-end gap-2">
+                <p-button label="Cancel" severity="secondary" (click)="visible = false" />
+                <p-button label="Save" type="submit" [disabled]="!formGroup.valid" />
+            </div>
+        </form>
+    </p-dialog>
+</p-fluid>
